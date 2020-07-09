@@ -5,12 +5,18 @@
 @Contact: zhuxudan@cloudwalk.cn
 @License: Mulan PSL
 @Software: VSCode
-@File: test_basic.py
-@Time: 2020/06/15 13:05:03
+@File: test_fixture_class.py
+@Time: 2020/07/09
 """
 import unittest
 
 class TestStringMethods(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        print("[{}][setUpClass]".format(__name__))
+        # setUp() 方法引发异常，测试框架会认为测试发生了错误，因此测试方法不会被运行
+        # assert 1 == 2 
 
     def test_upper(self):
         print("[{}][test_upper]".format(__name__))
@@ -20,7 +26,7 @@ class TestStringMethods(unittest.TestCase):
         print("[{}][test_isupper]".format(__name__))
         self.assertTrue('FOO'.isupper())
         self.assertFalse('Foo'.isupper())
-        # self.assertFalse('FOO'.isupper()) 
+        self.assertFalse('FOO'.isupper()) 
 
     def test_split(self):
         print("[{}][test_split]".format(__name__))
@@ -30,15 +36,14 @@ class TestStringMethods(unittest.TestCase):
         with self.assertRaises(TypeError):
             s.split(2)
 
+    @classmethod
+    def tearDownClass(cls):
+        print("[{}][tearDownClass]".format(__name__))
+
 
 if __name__ == '__main__':
     unittest.main()
 
 # 命令行参数
-# python -m unittest -v          # 显示详细信息
-# python -m unittest -q          # 安静输出
-# python -m unittest --locals    # tracebacks 输出局部变量
-# python -m unittest -f          # 第一个失败或者错误发生时即停止
-
-# python -m unittest -s official    # 指定开始搜索的目录, 默认(.)
-# python -m unittest -p "basic.py"  # 匹配模块名, 默认("test*.py")
+# setUpClass() tearDownClass() 调用关系
+# python -m unittest official\test_fixture_class.py
