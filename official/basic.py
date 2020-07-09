@@ -13,18 +13,18 @@ import unittest
 class TestStringMethods(unittest.TestCase):
 
     def test_upper(self):
-        print("[{}][test_upper]".format(__name__))
+        # print("[{}][test_upper]".format(__name__))
         self.assertEqual('foo'.upper(), 'FOO')
 
     def test_isupper(self):
-        print("[{}][test_isupper]".format(__name__))
+        # print("[{}][test_isupper]".format(__name__))
         self.assertTrue('FOO'.isupper())
         self.assertFalse('Foo'.isupper())
-        # self.assertFalse('FOO'.isupper())    
+        self.assertFalse('FOO'.isupper())    
         # assert 'FOO'.isupper == False
 
     def test_split(self):
-        print("[{}][test_split]".format(__name__))
+        # print("[{}][test_split]".format(__name__))
         s = 'hello world'
         self.assertEqual(s.split(), ['hello', 'world'])
         # check that s.split fails when the separator is not a string
@@ -46,7 +46,7 @@ class TestStringMethods(unittest.TestCase):
 # 命令行路径 TestFramework > ...
 # python -m unittest    # == python -m unittest discover; Ran 3 tests
 # python -m unittest official\basic.py
-# python -m unittest official.basic test_basic
+# python -m unittest official.basic
 # python -m unittest official.basic.TestStringMethods
 # python -m unittest official.basic.TestStringMethods.test_split
 
