@@ -13,15 +13,18 @@ import unittest
 class TestStringMethods(unittest.TestCase):
 
     def test_upper(self):
+        print("[{}][test_upper]".format(__name__))
         self.assertEqual('foo'.upper(), 'FOO')
 
     def test_isupper(self):
+        print("[{}][test_isupper]".format(__name__))
         self.assertTrue('FOO'.isupper())
         self.assertFalse('Foo'.isupper())
-        self.assertFalse('FOO'.isupper())    
+        # self.assertFalse('FOO'.isupper())    
         # assert 'FOO'.isupper == False
 
     def test_split(self):
+        print("[{}][test_split]".format(__name__))
         s = 'hello world'
         self.assertEqual(s.split(), ['hello', 'world'])
         # check that s.split fails when the separator is not a string
